@@ -1,0 +1,1928 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Crista 🌷</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:"Segoe UI",Arial,sans-serif;
+    color:#70485a;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(255,255,255,.8),transparent 22%),
+        radial-gradient(circle at 85% 85%,rgba(255,244,170,.7),transparent 25%),
+        linear-gradient(135deg,#ffd6e5,#fff0aa,#ffd1df);
+    overflow-x:hidden;
+}
+
+.pantalla{
+    min-height:100vh;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:24px;
+}
+
+#login{
+    display:flex;
+}
+
+.tarjeta{
+    width:min(490px,95vw);
+    background:rgba(255,255,255,.92);
+    border:2px solid rgba(255,255,255,.9);
+    border-radius:30px;
+    padding:34px 28px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(110,60,80,.18);
+    animation:entrada .55s ease;
+}
+
+@keyframes entrada{
+    from{
+        opacity:0;
+        transform:translateY(18px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+h1{
+    color:#934f6b;
+    margin-bottom:13px;
+}
+
+p{
+    line-height:1.65;
+}
+
+.icono{
+    font-size:62px;
+    margin-bottom:10px;
+}
+
+.grande{
+    font-size:20px;
+    font-weight:700;
+    line-height:1.55;
+    margin:18px 0;
+}
+
+.pequeno{
+    font-size:13px;
+    color:#987888;
+    margin-top:10px;
+}
+
+.aviso{
+    background:#fff5c7;
+    border:1px solid #e6d477;
+    border-radius:17px;
+    padding:14px;
+    margin:19px 0;
+    font-size:14px;
+    line-height:1.55;
+}
+
+.avisoImportante{
+    background:linear-gradient(135deg,#fff4bd,#ffe0ea);
+    border:1px solid #e7c477;
+    border-radius:18px;
+    padding:18px;
+    margin:20px 0;
+    line-height:1.65;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin-top:10px;
+    border:2px solid #efbdd0;
+    border-radius:15px;
+    outline:none;
+    text-align:center;
+    font-size:16px;
+    color:#70485a;
+}
+
+input:focus{
+    border-color:#d881a3;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:11px;
+    border:0;
+    border-radius:16px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:700;
+    color:#654152;
+    background:linear-gradient(135deg,#f1a8c3,#efd06f);
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 7px 18px rgba(120,70,90,.12);
+}
+
+button:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.opcionClara{
+    background:#f7eef2;
+}
+
+.opcionSuave{
+    background:linear-gradient(135deg,#f8d6e3,#fff0b5);
+}
+
+
+/* DECORACIÓN */
+
+.decoracion{
+    position:fixed;
+    z-index:-1;
+    pointer-events:none;
+    font-size:38px;
+    opacity:.55;
+    animation:flotar 4s ease-in-out infinite;
+}
+
+.d1{top:7%;left:5%;}
+.d2{top:9%;right:6%;animation-delay:1s;}
+.d3{bottom:8%;left:6%;animation-delay:2s;}
+.d4{bottom:9%;right:6%;animation-delay:.6s;}
+
+@keyframes flotar{
+    50%{
+        transform:translateY(-14px) rotate(8deg);
+    }
+}
+
+
+/* QUIZ */
+
+.progreso{
+    font-size:13px;
+    color:#987888;
+    margin:14px 0;
+}
+
+.pregunta{
+    font-size:18px;
+    font-weight:700;
+    line-height:1.5;
+    margin:20px 0;
+}
+
+.opcionQuiz{
+    background:#fff;
+    border:2px solid #f0c5d5;
+}
+
+.correcta{
+    background:#dff4df !important;
+    border-color:#89c18c !important;
+}
+
+.incorrecta{
+    background:#ffdee4 !important;
+    border-color:#dc8a9b !important;
+}
+
+
+/* JUEGO FLORES */
+
+#campoFlores{
+    width:100%;
+    height:330px;
+    position:relative;
+    overflow:hidden;
+    margin-top:18px;
+    border-radius:23px;
+    border:2px dashed #e3afc3;
+    background:
+        radial-gradient(circle at bottom,#dfeebc 0 15%,transparent 16%),
+        linear-gradient(#fff5c6,#ffe1eb);
+}
+
+#florJuego{
+    position:absolute;
+    display:none;
+    width:70px;
+    height:70px;
+    padding:0;
+    margin:0;
+    border:0;
+    background:transparent;
+    box-shadow:none;
+    font-size:53px;
+    cursor:pointer;
+}
+
+#florJuego:hover{
+    transform:scale(1.14);
+}
+
+.estadoJuego{
+    display:flex;
+    justify-content:space-between;
+    margin-top:15px;
+    font-weight:700;
+}
+
+#reintentarFlores{
+    display:none;
+}
+
+
+/* FINAL */
+
+.ramo{
+    font-size:76px;
+    margin-bottom:15px;
+    animation:ramo 2s ease-in-out infinite;
+}
+
+@keyframes ramo{
+    50%{
+        transform:scale(1.07) rotate(2deg);
+    }
+}
+
+.fraseFinal{
+    margin-top:20px;
+    padding:20px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#fff2bd,#ffe0eb);
+    font-size:17px;
+    line-height:1.7;
+}
+
+.petalo{
+    position:fixed;
+    top:-60px;
+    z-index:1000;
+    pointer-events:none;
+    animation:caer linear forwards;
+}
+
+@keyframes caer{
+    to{
+        transform:translateY(115vh) rotate(720deg);
+        opacity:.15;
+    }
+}
+
+@media(max-width:500px){
+    .tarjeta{
+        padding:28px 19px;
+    }
+
+    #campoFlores{
+        height:300px;
+    }
+
+    .decoracion{
+        font-size:29px;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<div class="decoracion d1">🌷</div>
+<div class="decoracion d2">🌻</div>
+<div class="decoracion d3">🌼</div>
+<div class="decoracion d4">💛</div>
+
+
+<!-- =================================
+LOGIN
+================================= -->
+
+<section class="pantalla" id="login">
+<div class="tarjeta">
+
+<div class="icono">🌷</div>
+
+<h1>Hay algo para ti...</h1>
+
+<p>
+Antes de continuar necesito comprobar
+que realmente eres tú 👀
+</p>
+
+<div class="aviso">
+Tienes <b>3 intentos</b>.<br>
+Si fallas los tres tendrás que esperar
+<b>10 horas</b>.
+</div>
+
+<input
+    id="nombre"
+    type="text"
+    placeholder="Escribe tu nombre..."
+    autocomplete="off"
+>
+
+<button id="botonEntrar">
+Descubrir 🌻
+</button>
+
+<div id="mensajeLogin"></div>
+
+<div id="contadorBloqueo" class="pequeno"></div>
+
+</div>
+</section>
+
+
+<!-- =================================
+BIENVENIDA
+================================= -->
+
+<section class="pantalla" id="bienvenida">
+<div class="tarjeta">
+
+<div class="ramo">🌻🌷🌻</div>
+
+<h1>Hola, Crista 💛</h1>
+
+<p>
+Bueno... parece que sí eras tú jajaja.
+<br><br>
+
+Preparé una pequeña cosa para ti.
+<br><br>
+
+Pero primero vas a tener que pasar
+unas pequeñas pruebas 👀
+</p>
+
+<button onclick="mostrarPantalla('avisoQuiz')">
+Continuar 🌷
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+AVISO
+================================= -->
+
+<section class="pantalla" id="avisoQuiz">
+<div class="tarjeta">
+
+<div class="icono">🧪👀</div>
+
+<h1>Antes de empezar...</h1>
+
+<div class="avisoImportante">
+
+Primero habrá algunas pruebas
+y después unas preguntas.
+
+<br><br>
+
+<b>
+Casi al final, dependiendo de tus respuestas,
+todo esto tendrá un poquito más de sentido.
+</b>
+
+<br><br>
+
+No tienes que responder lo que creas
+que quiero escuchar.
+
+<br><br>
+
+Solo responde lo que realmente piensas 🌷
+
+</div>
+
+<button onclick="iniciarQuiz()">
+Entendido, empecemos 🧪
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+QUIZ
+================================= -->
+
+<section class="pantalla" id="quiz">
+<div class="tarjeta">
+
+<div class="icono">⚗️🧪</div>
+
+<h1>Laboratorio de Crista</h1>
+
+<div id="progresoQuiz" class="progreso"></div>
+
+<div id="preguntaQuiz" class="pregunta"></div>
+
+<div id="opcionesQuiz"></div>
+
+<div id="resultadoQuiz"></div>
+
+</div>
+</section>
+
+
+<!-- =================================
+ANTES DE FLORES
+================================= -->
+
+<section class="pantalla" id="antesFlores">
+<div class="tarjeta">
+
+<div class="icono">🧪✅</div>
+
+<h1>Laboratorio aprobado</h1>
+
+<p>
+Bueno...
+eso estuvo fácil 😂
+<br><br>
+
+Pero todavía necesitamos conseguir algo.
+👀
+</p>
+
+<button onclick="iniciarFlores()">
+A ver... 🌻
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+JUEGO FLORES
+================================= -->
+
+<section class="pantalla" id="juegoFlores">
+<div class="tarjeta">
+
+<h1>Atrapa las flores 🌻</h1>
+
+<p>
+Necesitamos <b>7 flores</b>.
+<br>
+Tienes 15 segundos.
+</p>
+
+<div class="estadoJuego">
+
+<span id="cantidadFlores">
+🌻 0 / 7
+</span>
+
+<span id="tiempoFlores">
+⏱️ 15
+</span>
+
+</div>
+
+<div id="campoFlores">
+
+<button
+    id="florJuego"
+    onclick="atraparFlor()"
+    type="button">
+🌻
+</button>
+
+</div>
+
+<div id="mensajeFlores"></div>
+
+<button
+    id="reintentarFlores"
+    onclick="comenzarFlores()">
+JAJA otra vez 🌻
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+INICIO PERSONAL
+================================= -->
+
+<section class="pantalla" id="inicioPersonal">
+<div class="tarjeta">
+
+<div class="icono">🌻💭</div>
+
+<h1>Bueno...</h1>
+
+<p>
+Ya sobreviviste al laboratorio
+y conseguiste las flores 😂
+<br><br>
+
+Ahora vienen unas preguntas diferentes.
+<br><br>
+
+No son examen.
+Solo quiero saber qué piensas.
+</p>
+
+<button onclick="mostrarPantalla('preguntaBien')">
+Continuar 👀
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+PREGUNTA 1
+================================= -->
+
+<section class="pantalla" id="preguntaBien">
+<div class="tarjeta">
+
+<div class="icono">💭</div>
+
+<div class="grande">
+Cuando hablamos...
+<br><br>
+¿te hago sentir bien?
+</div>
+
+<button onclick="siguiente('preguntaHablar')">
+Sí 💛
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('preguntaHablar')">
+A veces 👀
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('preguntaHablar')">
+No mucho
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+PREGUNTA 2
+================================= -->
+
+<section class="pantalla" id="preguntaHablar">
+<div class="tarjeta">
+
+<div class="icono">💬</div>
+
+<div class="grande">
+¿Te gusta cuando pasamos un rato hablando,
+aunque sea de cualquier tontería?
+</div>
+
+<button onclick="siguiente('preguntaCuriosidad')">
+Sí, bastante 🌷
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('preguntaCuriosidad')">
+JAJA sí
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('preguntaCuriosidad')">
+Más o menos
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+PREGUNTA 3
+================================= -->
+
+<section class="pantalla" id="preguntaCuriosidad">
+<div class="tarjeta">
+
+<div class="icono">👀</div>
+
+<div class="grande">
+Cuando ves un mensaje mío...
+<br><br>
+¿te da curiosidad saber
+qué te voy a decir?
+</div>
+
+<button onclick="siguiente('preguntaCarino')">
+Sí JAJA
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('preguntaCarino')">
+A veces 👀
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('preguntaCarino')">
+No mucho
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+PREGUNTA 4
+================================= -->
+
+<section class="pantalla" id="preguntaCarino">
+<div class="tarjeta">
+
+<div class="icono">🌷</div>
+
+<div class="grande">
+¿Sientes que te has encariñado
+aunque sea un poquito conmigo?
+</div>
+
+<button onclick="siguiente('preguntaTrato')">
+Sí, un poquito 🌷
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('preguntaTrato')">
+Puede ser 👀
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('preguntaTrato')">
+Todavía no sé
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+PREGUNTA 5
+================================= -->
+
+<section class="pantalla" id="preguntaTrato">
+<div class="tarjeta">
+
+<div class="icono">💛</div>
+
+<div class="grande">
+¿Te gusta la forma
+en la que te trato?
+</div>
+
+<button onclick="siguiente('preguntaConocer')">
+Sí, me gusta 💛
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('preguntaConocer')">
+Sí, aunque eres medio tonto 😂
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('preguntaConocer')">
+Hay cosas que cambiaría
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+PREGUNTA 6
+================================= -->
+
+<section class="pantalla" id="preguntaConocer">
+<div class="tarjeta">
+
+<div class="icono">🌻</div>
+
+<div class="grande">
+¿Te gustaría que sigamos
+conociéndonos un poquito más?
+</div>
+
+<button onclick="siguiente('preguntaBonito')">
+Sí 🌷
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('preguntaBonito')">
+Me gustaría 💛
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('preguntaBonito')">
+Vamos viendo 👀
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+PREGUNTA CLAVE
+================================= -->
+
+<section class="pantalla" id="preguntaBonito">
+<div class="tarjeta">
+
+<div class="icono">🌷💛</div>
+
+<h1>Y ahora sí...</h1>
+
+<div class="grande">
+¿Te gustaría que esto,
+con el tiempo,
+pueda sentirse un poquito más bonito?
+</div>
+
+<button onclick="siguiente('musicas')">
+Sí, me gustaría 💛
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('musicas')">
+Tal vez... 👀
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('musicas')">
+Prefiero dejar que pase
+lo que tenga que pasar 🌷
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+MÚSICAS JUSTO DESPUÉS
+================================= -->
+
+<section class="pantalla" id="musicas">
+<div class="tarjeta">
+
+<div class="icono">🎧🌻</div>
+
+<h1>Bueno...</h1>
+
+<p>
+Si llegaste hasta aquí
+y aceptaste todo lo demás...
+<br><br>
+
+entonces ahora sí quiero pedirte
+<b>tres canciones</b>.
+</p>
+
+<div class="avisoImportante">
+
+🎧 Dedícame una canción que represente
+<b>cómo te hago sentir.</b>
+
+<br><br>
+
+🎵 Otra que represente
+<b>qué vibras te doy.</b>
+
+<br><br>
+
+☕ Y una última que creas perfecta
+para escuchar mientras algún día
+<b>nos tomamos un cafecito.</b>
+
+</div>
+
+<p>
+No tienes que escribirlas aquí.
+<br><br>
+
+Si te nace,
+<b>mándamelas después.</b> 🌷
+</p>
+
+<button onclick="mostrarPantalla('preguntaComoda')">
+Continuar 👀
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+SEGUIMOS CON PREGUNTAS
+================================= -->
+
+<section class="pantalla" id="preguntaComoda">
+<div class="tarjeta">
+
+<div class="icono">🌷</div>
+
+<h1>Solo quedan unas poquitas...</h1>
+
+<div class="grande">
+¿Te sentirías cómoda
+si sigo siendo cariñoso contigo
+como hasta ahora?
+</div>
+
+<button onclick="siguiente('preguntaRitmo')">
+Sí 💛
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('preguntaRitmo')">
+Sí, está bien así 🌷
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('preguntaRitmo')">
+Prefiero que vayamos despacio
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+ÚLTIMA PREGUNTA
+================================= -->
+
+<section class="pantalla" id="preguntaRitmo">
+<div class="tarjeta">
+
+<div class="icono">🌻💛</div>
+
+<h1>Última, prometido 😂</h1>
+
+<div class="grande">
+Entonces...
+<br><br>
+¿dejamos que todo siga
+a su ritmo?
+</div>
+
+<button onclick="siguiente('antesFinal')">
+Sí 🌷
+</button>
+
+<button class="opcionSuave"
+onclick="siguiente('antesFinal')">
+Me parece bonito 💛
+</button>
+
+<button class="opcionClara"
+onclick="siguiente('antesFinal')">
+Vamos viendo 👀
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+ANTES DEL FINAL
+================================= -->
+
+<section class="pantalla" id="antesFinal">
+<div class="tarjeta">
+
+<div class="icono">🌻🌷</div>
+
+<h1>Ya llegaste hasta aquí...</h1>
+
+<p>
+Así que gracias por seguirme
+la corriente con todo esto 😂
+<br><br>
+
+No quería que esto fuera una forma
+de obligarte a decidir nada.
+<br><br>
+
+Solo quería hacerte algo bonito
+y saber un poquito más
+de lo que piensas.
+</p>
+
+<button onclick="irAlFinal()">
+Una última cosa 🌻
+</button>
+
+</div>
+</section>
+
+
+<!-- =================================
+FINAL
+================================= -->
+
+<section class="pantalla" id="finalBonito">
+<div class="tarjeta">
+
+<div class="ramo">
+🌻🌷🌻
+</div>
+
+<h1>Para ti, Crista 💛</h1>
+
+<p>
+Gracias por dedicarme
+un ratito de tu tiempo.
+</p>
+
+<div class="fraseFinal">
+
+🌻
+
+<br><br>
+
+<b>
+Y perdón por no haber estado
+ese 21 para darte flores amarillas...
+</b>
+
+<br><br>
+
+La verdad es que todavía
+ni siquiera te conocía.
+
+<br><br>
+
+Así que supongo que estas
+llegaron un poquito tarde.
+
+<br><br>
+
+Pero llegaron. 💛
+
+<br><br>
+
+🌻🌻🌻
+
+</div>
+
+<p style="margin-top:22px;">
+Ahora sí...
+<br><br>
+<b>terminamos aquí 🌷</b>
+</p>
+
+</div>
+</section>
+
+
+<!-- =================================
+SI YA TERMINÓ
+================================= -->
+
+<section class="pantalla" id="cerrado">
+<div class="tarjeta">
+
+<div class="ramo">
+🌻🌷🌻
+</div>
+
+<h1>Para Crista 💛</h1>
+
+<p>
+Las flores ya llegaron
+a donde tenían que llegar.
+<br><br>
+🌷
+</p>
+
+</div>
+</section>
+
+
+<script>
+
+/* =================================
+CONFIGURACIÓN LOGIN
+================================= */
+
+const CLAVE = "crista";
+const MAX_INTENTOS = 3;
+const BLOQUEO = 10 * 60 * 60 * 1000;
+
+let intentos =
+parseInt(
+    localStorage.getItem("crista_intentos")
+) || 0;
+
+let bloqueoHasta =
+parseInt(
+    localStorage.getItem("crista_bloqueo")
+) || 0;
+
+
+/* =================================
+ELEMENTOS
+================================= */
+
+const nombre =
+document.getElementById("nombre");
+
+const botonEntrar =
+document.getElementById("botonEntrar");
+
+const mensajeLogin =
+document.getElementById("mensajeLogin");
+
+const contadorBloqueo =
+document.getElementById("contadorBloqueo");
+
+
+/* =================================
+INICIO
+================================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+    if(
+        localStorage.getItem("crista_finalizado")
+        === "si"
+    ){
+
+        mostrarPantalla("cerrado");
+        return;
+    }
+
+    comprobarBloqueo();
+
+});
+
+
+/* =================================
+CAMBIAR PANTALLA
+================================= */
+
+function mostrarPantalla(id){
+
+    document
+    .querySelectorAll(".pantalla")
+    .forEach(function(p){
+
+        p.style.display = "none";
+
+    });
+
+    document
+    .getElementById(id)
+    .style.display = "flex";
+
+    window.scrollTo(0,0);
+}
+
+
+function siguiente(id){
+
+    mostrarPantalla(id);
+}
+
+
+/* =================================
+LOGIN
+================================= */
+
+botonEntrar.addEventListener(
+"click",
+entrar
+);
+
+
+nombre.addEventListener(
+"keydown",
+function(e){
+
+    if(e.key === "Enter"){
+        entrar();
+    }
+
+});
+
+
+function entrar(){
+
+    if(comprobarBloqueo()){
+        return;
+    }
+
+
+    /*
+    Debe ser exactamente:
+
+    crista
+    */
+
+    const escrito =
+    nombre.value.trim();
+
+
+    if(escrito === CLAVE){
+
+        intentos = 0;
+
+        localStorage.removeItem(
+            "crista_intentos"
+        );
+
+        localStorage.removeItem(
+            "crista_bloqueo"
+        );
+
+        mensajeLogin.style.color =
+        "#57905d";
+
+        mensajeLogin.textContent =
+        "Correcto... sí eras tú 🌷";
+
+        nombre.disabled = true;
+
+        botonEntrar.disabled = true;
+
+        lluviaFlores();
+
+        setTimeout(function(){
+
+            mostrarPantalla(
+                "bienvenida"
+            );
+
+        },1000);
+
+        return;
+    }
+
+
+    intentos++;
+
+
+    localStorage.setItem(
+        "crista_intentos",
+        intentos
+    );
+
+
+    const restantes =
+    MAX_INTENTOS - intentos;
+
+
+    if(intentos >= MAX_INTENTOS){
+
+        bloqueoHasta =
+        Date.now() + BLOQUEO;
+
+
+        localStorage.setItem(
+            "crista_bloqueo",
+            bloqueoHasta
+        );
+
+
+        intentos = 0;
+
+
+        localStorage.setItem(
+            "crista_intentos",
+            "0"
+        );
+
+
+        mensajeLogin.style.color =
+        "#b34f70";
+
+
+        mensajeLogin.textContent =
+        "Ups... se acabaron los intentos 👀";
+
+
+        comprobarBloqueo();
+
+        return;
+    }
+
+
+    nombre.value = "";
+
+
+    mensajeLogin.style.color =
+    "#b34f70";
+
+
+    mensajeLogin.textContent =
+    "Nope 👀 Te quedan " +
+    restantes +
+    " intento(s).";
+}
+
+
+/* =================================
+BLOQUEO
+================================= */
+
+function comprobarBloqueo(){
+
+    const ahora =
+    Date.now();
+
+
+    if(bloqueoHasta > ahora){
+
+        nombre.disabled = true;
+
+        botonEntrar.disabled = true;
+
+        actualizarBloqueo();
+
+        return true;
+    }
+
+
+    if(bloqueoHasta !== 0){
+
+        bloqueoHasta = 0;
+        intentos = 0;
+
+        localStorage.removeItem(
+            "crista_bloqueo"
+        );
+
+        localStorage.setItem(
+            "crista_intentos",
+            "0"
+        );
+    }
+
+
+    nombre.disabled = false;
+
+    botonEntrar.disabled = false;
+
+    contadorBloqueo.textContent = "";
+
+    return false;
+}
+
+
+function actualizarBloqueo(){
+
+    const restante =
+    bloqueoHasta - Date.now();
+
+
+    if(restante <= 0){
+
+        bloqueoHasta = 0;
+
+        intentos = 0;
+
+
+        localStorage.removeItem(
+            "crista_bloqueo"
+        );
+
+
+        localStorage.setItem(
+            "crista_intentos",
+            "0"
+        );
+
+
+        nombre.disabled = false;
+
+        botonEntrar.disabled = false;
+
+        contadorBloqueo.textContent = "";
+
+        mensajeLogin.textContent =
+        "Ya puedes intentarlo otra vez 🌷";
+
+        return;
+    }
+
+
+    const horas =
+    Math.floor(
+        restante / 3600000
+    );
+
+
+    const minutos =
+    Math.floor(
+        (restante % 3600000)
+        / 60000
+    );
+
+
+    const segundos =
+    Math.floor(
+        (restante % 60000)
+        / 1000
+    );
+
+
+    contadorBloqueo.textContent =
+    "🔒 " +
+    horas + "h " +
+    minutos + "m " +
+    segundos + "s";
+}
+
+
+setInterval(function(){
+
+    if(
+        bloqueoHasta >
+        Date.now()
+    ){
+
+        actualizarBloqueo();
+    }
+
+},1000);
+
+
+/* =================================
+QUIZ
+================================= */
+
+const preguntas = [
+
+{
+    pregunta:
+    "Primera prueba 🧪 ¿Cuál es la fórmula química del agua?",
+
+    opciones:[
+        "H₂O",
+        "CO₂",
+        "NaCl"
+    ],
+
+    correcta:0
+},
+
+{
+    pregunta:
+    "Segunda 👀 ¿Qué valor de pH se considera neutro?",
+
+    opciones:[
+        "2",
+        "7",
+        "12"
+    ],
+
+    correcta:1
+},
+
+{
+    pregunta:
+    "Último experimento ⚗️ ¿Qué instrumento se utiliza para medir pequeños volúmenes de líquido con precisión?",
+
+    opciones:[
+        "Pipeta",
+        "Mortero",
+        "Espátula"
+    ],
+
+    correcta:0
+}
+
+];
+
+
+let preguntaActual = 0;
+
+
+function iniciarQuiz(){
+
+    preguntaActual = 0;
+
+    mostrarPantalla("quiz");
+
+    cargarPregunta();
+}
+
+
+function cargarPregunta(){
+
+    const actual =
+    preguntas[preguntaActual];
+
+
+    document.getElementById(
+        "progresoQuiz"
+    ).textContent =
+    "Experimento " +
+    (preguntaActual + 1) +
+    " de " +
+    preguntas.length;
+
+
+    document.getElementById(
+        "preguntaQuiz"
+    ).textContent =
+    actual.pregunta;
+
+
+    const contenedor =
+    document.getElementById(
+        "opcionesQuiz"
+    );
+
+
+    contenedor.innerHTML = "";
+
+
+    document.getElementById(
+        "resultadoQuiz"
+    ).textContent = "";
+
+
+    actual.opciones.forEach(
+    function(opcion,index){
+
+        const boton =
+        document.createElement(
+            "button"
+        );
+
+
+        boton.className =
+        "opcionQuiz";
+
+
+        boton.textContent =
+        opcion;
+
+
+        boton.onclick =
+        function(){
+
+            responderQuiz(
+                index,
+                boton
+            );
+
+        };
+
+
+        contenedor.appendChild(
+            boton
+        );
+
+    });
+}
+
+
+function responderQuiz(
+    indice,
+    boton
+){
+
+    const actual =
+    preguntas[preguntaActual];
+
+
+    const botones =
+    document.querySelectorAll(
+        ".opcionQuiz"
+    );
+
+
+    botones.forEach(function(b){
+
+        b.disabled = true;
+
+    });
+
+
+    if(indice === actual.correcta){
+
+        boton.classList.add(
+            "correcta"
+        );
+
+        document.getElementById(
+            "resultadoQuiz"
+        ).textContent =
+        "Correcto 🧪✨";
+
+    }else{
+
+        boton.classList.add(
+            "incorrecta"
+        );
+
+
+        botones[
+            actual.correcta
+        ].classList.add(
+            "correcta"
+        );
+
+
+        document.getElementById(
+            "resultadoQuiz"
+        ).textContent =
+        "Casi 👀 Esa no era.";
+    }
+
+
+    setTimeout(function(){
+
+        preguntaActual++;
+
+
+        if(
+            preguntaActual <
+            preguntas.length
+        ){
+
+            cargarPregunta();
+
+        }else{
+
+            mostrarPantalla(
+                "antesFlores"
+            );
+
+        }
+
+    },1200);
+}
+
+
+/* =================================
+JUEGO FLORES
+================================= */
+
+let flores = 0;
+let tiempo = 15;
+let temporizador = null;
+let juegoActivo = false;
+
+
+function iniciarFlores(){
+
+    mostrarPantalla(
+        "juegoFlores"
+    );
+
+    comenzarFlores();
+}
+
+
+function comenzarFlores(){
+
+    clearInterval(
+        temporizador
+    );
+
+
+    flores = 0;
+    tiempo = 15;
+    juegoActivo = true;
+
+
+    document.getElementById(
+        "cantidadFlores"
+    ).textContent =
+    "🌻 0 / 7";
+
+
+    document.getElementById(
+        "tiempoFlores"
+    ).textContent =
+    "⏱️ 15";
+
+
+    document.getElementById(
+        "mensajeFlores"
+    ).textContent = "";
+
+
+    document.getElementById(
+        "reintentarFlores"
+    ).style.display =
+    "none";
+
+
+    const flor =
+    document.getElementById(
+        "florJuego"
+    );
+
+
+    flor.style.display =
+    "block";
+
+
+    moverFlor();
+
+
+    temporizador =
+    setInterval(function(){
+
+        tiempo--;
+
+
+        document.getElementById(
+            "tiempoFlores"
+        ).textContent =
+        "⏱️ " + tiempo;
+
+
+        if(tiempo <= 0){
+
+            perderFlores();
+
+        }
+
+    },1000);
+}
+
+
+function moverFlor(){
+
+    const campo =
+    document.getElementById(
+        "campoFlores"
+    );
+
+
+    const flor =
+    document.getElementById(
+        "florJuego"
+    );
+
+
+    const maxX =
+    Math.max(
+        campo.clientWidth - 75,
+        1
+    );
+
+
+    const maxY =
+    Math.max(
+        campo.clientHeight - 75,
+        1
+    );
+
+
+    flor.style.left =
+    (Math.random() * maxX) +
+    "px";
+
+
+    flor.style.top =
+    (Math.random() * maxY) +
+    "px";
+}
+
+
+function atraparFlor(){
+
+    if(!juegoActivo){
+        return;
+    }
+
+
+    flores++;
+
+
+    document.getElementById(
+        "cantidadFlores"
+    ).textContent =
+    "🌻 " +
+    flores +
+    " / 7";
+
+
+    if(flores >= 7){
+
+        ganarFlores();
+        return;
+    }
+
+
+    moverFlor();
+}
+
+
+function ganarFlores(){
+
+    juegoActivo = false;
+
+    clearInterval(
+        temporizador
+    );
+
+
+    document.getElementById(
+        "florJuego"
+    ).style.display =
+    "none";
+
+
+    document.getElementById(
+        "mensajeFlores"
+    ).textContent =
+    "Perfecto 🌻 Ya tenemos las siete.";
+
+
+    lluviaFlores();
+
+
+    setTimeout(function(){
+
+        mostrarPantalla(
+            "inicioPersonal"
+        );
+
+    },1300);
+}
+
+
+function perderFlores(){
+
+    juegoActivo = false;
+
+    clearInterval(
+        temporizador
+    );
+
+
+    document.getElementById(
+        "florJuego"
+    ).style.display =
+    "none";
+
+
+    document.getElementById(
+        "mensajeFlores"
+    ).textContent =
+    "JAJA casi 👀 Inténtalo otra vez.";
+
+
+    document.getElementById(
+        "reintentarFlores"
+    ).style.display =
+    "block";
+}
+
+
+/* =================================
+FINAL
+================================= */
+
+function irAlFinal(){
+
+    localStorage.setItem(
+        "crista_finalizado",
+        "si"
+    );
+
+
+    mostrarPantalla(
+        "finalBonito"
+    );
+
+
+    lluviaFlores();
+
+
+    setTimeout(function(){
+
+        lluviaFlores();
+
+    },2500);
+}
+
+
+/* =================================
+LLUVIA DE FLORES
+================================= */
+
+function lluviaFlores(){
+
+    const simbolos = [
+        "🌻",
+        "🌷",
+        "🌼",
+        "💛"
+    ];
+
+
+    for(
+        let i = 0;
+        i < 35;
+        i++
+    ){
+
+        const petalo =
+        document.createElement(
+            "div"
+        );
+
+
+        petalo.className =
+        "petalo";
+
+
+        petalo.textContent =
+        simbolos[
+            Math.floor(
+                Math.random() *
+                simbolos.length
+            )
+        ];
+
+
+        petalo.style.left =
+        Math.random() *
+        100 +
+        "vw";
+
+
+        petalo.style.fontSize =
+        (
+            18 +
+            Math.random() *
+            24
+        ) +
+        "px";
+
+
+        petalo.style.animationDuration =
+        (
+            3 +
+            Math.random() *
+            3
+        ) +
+        "s";
+
+
+        petalo.style.animationDelay =
+        Math.random() +
+        "s";
+
+
+        document.body.appendChild(
+            petalo
+        );
+
+
+        setTimeout(function(){
+
+            petalo.remove();
+
+        },7000);
+    }
+}
+
+</script>
+
+</body>
+</html>
